@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  lab7.laravel.nginx:
+    image: pressmaninc/pm-kusanagi-nginx:1.17.2
+    ports:
+      - 8080:80
+    volumes:
+      - ./etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./html:/var/www/html
+    environment:
+      TZ: Asia/Tokyo
+    links:
+      - lab7.laravel.php:php
+
+  lab7.laravel.php:
+    build: ./docker/php
+    image: laravel-test-php:7.3.8
+    volumes:
+      - ./html:/var/www/html
+    environment:
+      TZ: Asia/Tokyo
+    links:
+      - lab7.laravel.mariadb:mysql
+
+  lab7.laravel.mariadb:
+    image: mariadb:10.4.6
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_USER: Uzer
+      MYSQL_PASSWORD: Passw0rd
+      MYSQL_DATABASE: laravel
+      TZ: Asia/Tokyo
+    volumes:
+      - ./var/lib/mysql:/var/lib/mysql
+
+  lab7.laravel.phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.9
+    links:
+      - lab7.laravel.mariadb:mysql
+    environment:
+      - PMA_ARBITARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=my-secret-pw
+    ports:
+      - 8081:80
+    volumes:
+      - ./sessions/phpmyadmin:/sessions
