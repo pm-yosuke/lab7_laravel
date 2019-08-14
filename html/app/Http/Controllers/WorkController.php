@@ -9,6 +9,16 @@ use Illuminate\Http\{Request, Response};
 class WorkController extends Controller
 {
     /**
+     * Middleware のテスト用アクション
+     *
+     * @param  int  $id
+     * @return int
+     */
+    public function test(int $id) {
+        return $id;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
