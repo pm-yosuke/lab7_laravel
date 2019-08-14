@@ -14,7 +14,8 @@ class WorkController extends Controller
      * @param  int  $id
      * @return int
      */
-    public function test(int $id) {
+    public function test(int $id)
+    {
         return $id;
     }
 
@@ -54,18 +55,18 @@ class WorkController extends Controller
     /**
      * Display the specified resouce.
      *
-     * @param  Work  $work
+     * @param  int  $id
      * @return Resource
      */
-    public function show(Work $work)
+    public function show($id)
     {
-        return new Resource($work);
+        return new Resource((new Work())->find($id));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -77,20 +78,22 @@ class WorkController extends Controller
      * Update the specified resource in storage.
      *
      * @param  Request  $request
-     * @param int $id
+     * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
     }
 }
