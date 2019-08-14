@@ -2,32 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MyWork\Store as StoreRequest;
 use App\Http\Resources\Work as Resource;
 use App\Models\Work;
 use Illuminate\Http\{Request, Response};
 
-class WorkController extends Controller
+class MyWorkController extends Controller
 {
-    /**
-     * Middleware のテスト用アクション
-     *
-     * @param  int  $id
-     * @return int
-     */
-    public function test(int $id) {
-        return $id;
-    }
-
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return Response
      */
     public function index()
     {
-        return Resource::collection(
-            Work::All()
-        );
+        //
     }
 
     /**
@@ -44,29 +33,35 @@ class WorkController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  Request  $request
+     * @return Resource
+     */
+    public function store(StoreRequest $request)
+    {
+        $id = auth()->user()->id;
+        $work = new Work();
+        $work->fill($request->all());
+        $work->owner_id = $id;
+        $work->save();
+
+        return new Resource($work);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
      * @return Response
      */
-    public function store(Request $request)
+    public function show($id)
     {
         //
     }
 
     /**
-     * Display the specified resouce.
-     *
-     * @param  Work  $work
-     * @return Resource
-     */
-    public function show(Work $work)
-    {
-        return new Resource($work);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     * @return Response
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -77,20 +72,22 @@ class WorkController extends Controller
      * Update the specified resource in storage.
      *
      * @param  Request  $request
-     * @param int $id
+     * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
     }
 }
