@@ -32,5 +32,6 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('works/{id}', 'WorkController@show');
 
         Route::post('myworks', 'MyWorkController@store');
+        Route::put('myworks/{work}', 'MyWorkController@update');
     });
 });
