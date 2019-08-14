@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MyWork\Store as StoreRequest;
 use App\Http\Resources\Work as Resource;
 use App\Models\Work;
 use Illuminate\Http\{Request, Response};
@@ -34,7 +35,7 @@ class MyWorkController extends Controller
      * @param  Request  $request
      * @return Resource
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $id = auth()->user()->id;
         $work = new Work();
