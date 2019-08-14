@@ -17,7 +17,10 @@ class Update extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        $work = $this->route('work');
+        $uid = auth()->user()->id;
+
+        return ($work->owner_id == $uid);
     }
 
     /**
