@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MyWork\Store as StoreRequest;
 use App\Http\Resources\Work as Resource;
 use App\Models\Work;
 use Illuminate\Http\{Request, Response};
+
+use App\Http\Requests\MyWork\{
+    Store as StoreRequest,
+    Update as UpdateRequest
+};
 
 class MyWorkController extends Controller
 {
@@ -49,12 +53,12 @@ class MyWorkController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param  Work work
+     * @return Resource
      */
-    public function show($id)
+    public function show(Work $work)
     {
-        //
+        return new Resource($work);
     }
 
     /**
@@ -71,13 +75,16 @@ class MyWorkController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
+     * @param  UpdateRequest  $request
+     * @param  Work  $work
+     * @return Resource
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, Work $work)
     {
-        //
+        $work->fill($request->all());
+        $work->save();
+
+        return new Resource($work);
     }
 
     /**
