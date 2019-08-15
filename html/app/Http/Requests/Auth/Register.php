@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Requests\MyWork;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Http\Requests\ValidationErrorResponseCustomizer;
 
-class Store extends FormRequest
+class Register extends FormRequest
 {
     use ValidationErrorResponseCustomizer;
 
@@ -29,10 +27,9 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:256',
-            'reward' => 'required|integer',
-            'description' => 'required|max:256',
-            'entry_end_at' => 'date',
+            'name' => 'required|max:16',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|max:16',
         ];
     }
 }
