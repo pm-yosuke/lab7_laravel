@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Http\Requests\Auth\Register as RegisterRequest;
 use App\Mail\Test;
+use App\Jobs\SendMail;
 
 class AuthController extends Controller
 {
@@ -38,7 +39,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
 
-        Mail::to($user->email)->send(new Test($user));
+        SendMail::dispatch($user);
 
         return $user;
     }
