@@ -33,5 +33,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::post('myworks', 'MyWorkController@store');
         Route::put('myworks/{work}', 'MyWorkController@update')->middleware('can:update,work');
+
+        Route::post('upload', 'UploadController@store');
     });
 });
