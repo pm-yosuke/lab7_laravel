@@ -27,11 +27,13 @@ class WorkController extends Controller
      */
     public function index()
     {
-        DB::enableQueryLog();
-        $result = Resource::collection(Work::with(['owner'])->get());
-        $json = $result->toJson();
-        dd(DB::getQueryLog());
-        return $json;
+        // DB::enableQueryLog();
+        // $result = Resource::collection(Work::with(['owner'])->get());
+        // $json = $result->toJson();
+        // dd(DB::getQueryLog());
+        // return $json;
+
+        return Resource::collection(Work::All());
     }
 
     /**

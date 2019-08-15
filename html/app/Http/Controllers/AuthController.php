@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
+use App\Http\Requests\Auth\Register as RegisterRequest;
+use App\Mail\Test;
+use App\Jobs\SendMail;
 
 class AuthController extends Controller
 {
@@ -27,13 +31,17 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        return User::create([
+        $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ]);
+
+        SendMail::dispatch($user);
+
+        return $user;
     }
 
     public function me()
