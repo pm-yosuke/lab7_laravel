@@ -18,14 +18,14 @@ class UsersTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         DB::table('users')->insert([
-            'name' => '中村太一',
-            'email' => 'taich@asaichi.co.jp',
+            'name' => '中務陽介',
+            'email' => 'yosuke_nakatsukasa@pressman.ne.jp',
             'password' => bcrypt('secret'),
         ]);
 
         $user = new User();
-        $user->name = '中村太一２';
-        $user->email = 'taichi+2@asaichi.co.jp';
+        $user->name = '中村太一';
+        $user->email = 'taichi@asaichi.co.jp';
         $user->password = bcrypt('secret');
         $user->save();
 
