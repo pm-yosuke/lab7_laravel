@@ -21,23 +21,23 @@
                     <li>
                         <router-link to="/works">
                             <span class="icon">
-                                <i class="mif-star-empty"></i>
+                                <i class="mif-list"></i>
                             </span>
                             <span class="caption">
                                 仕事
                             </span>
                         </router-link>
                     </li>
-                    <!--li>
-                        <a href="#">
+                    <li>
+                        <router-link to="/myworks">
                             <span class="icon">
-                                <i class="mif-star-empty"></i>
+                                <i class="mif-folder-upload"></i>
                             </span>
                             <span class="caption">
                                 発注
                             </span>
-                        </a>
-                    </li -->
+                        </router-link>
+                    </li>
                     <!-- li>
                         <a href="#">
                             <span class="icon">
@@ -50,16 +50,29 @@
                     </li -->
                 </ul>
             </div>
-            <router-view class="navview-content"></router-view>
+            <transition mode="out-in">
+                <router-view class="navview-content"></router-view>
+            </transition>
         </div>
     </div>
 </template>
 
-<style>
+<style lang="scss">
     #view {
         margin-top: 52px;
         min-height: calc(100vh - 52px);
-        padding-left: 30px;
+
+        .navview-content {
+            padding-left: 30px;
+            padding-top: 15px;
+        }
+    }
+
+    .v-enter-active, .v-leave-active {
+        transition: opacity .5s;
+    }
+    .v-enter, .v-leave-to {
+        opacity: 0;
     }
 </style>
 

@@ -30,6 +30,14 @@ docker-compose exec lab7.laravel.php php artisan key:generate
 chmod 777 -R html/storage
 ```
 
+### 画面のビルド
+```shell
+cd html
+yarn
+yarn run dev
+```
+
+
 ### URL
 
 http://localhost:8080/

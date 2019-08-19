@@ -1,5 +1,5 @@
 <template>
     <div>
-        ホーム
+        <h2>ホーム</h2>
     </div>
 </template>

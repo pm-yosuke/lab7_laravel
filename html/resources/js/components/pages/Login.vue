@@ -47,7 +47,7 @@
         },
         methods: {
             login() {
-                axios.post('api/v1/auth/login', {
+                axios.post('/api/v1/auth/login', {
                     email: this.email,
                     password: this.password
                 }).then(res => {

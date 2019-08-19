@@ -31,7 +31,9 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('works', 'WorkController@index');
         Route::get('works/{id}', 'WorkController@show');
 
+        Route::get('myworks', 'MyWorkController@index');
         Route::post('myworks', 'MyWorkController@store');
+        // Route::get('myworks/{work}', 'MyWorkController@show'); //  works/{id} と被るのでいらないでしょ。
         Route::put('myworks/{work}', 'MyWorkController@update')->middleware('can:update,work');
 
         Route::post('upload', 'UploadController@store');
