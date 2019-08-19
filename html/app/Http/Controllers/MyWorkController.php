@@ -16,11 +16,11 @@ class MyWorkController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        //
+        return Resource::collection(Work::where('owner_id', auth()->user()->id)->get());
     }
 
     /**

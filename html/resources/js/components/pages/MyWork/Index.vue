@@ -1,7 +1,8 @@
 <template>
     <div class="grid">
         <div class="row">
-            <h2>仕事一覧</h2>
+            <h2>発注一覧</h2>
+            <router-link to="/myworks/create" class="button info ml-auto mr-5">新規作成</router-link>
         </div>
         <div class="row pr-4">
             <div v-for="work in works" style="width: 350px;">
@@ -17,7 +18,7 @@
                         <span>{{ work.entry_end_at.split(' ')[0] }}</span>
                     </div>
                     <div class="card-footer">
-                        <router-link :to="`/works/${work.id}`" class="button secondary">詳細</router-link>
+                        <router-link :to="`/myworks/${work.id}`" class="button secondary">詳細</router-link>
                     </div>
                 </div>
             </div>
@@ -37,7 +38,7 @@
             }
         },
         created() {
-            axios.get('/api/v1/works').then(res => {
+            axios.get('/api/v1/myworks').then(res => {
                 this.works = res.data.data;
             });
         }
