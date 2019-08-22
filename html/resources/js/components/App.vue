@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-show="$route.path !== '/login'" class="bg-darkCrimson"
+        <div v-show="!$route.meta.allowGuest" class="bg-darkCrimson"
              data-role="appbar" data-expand-point="md">
             <router-link to="/" class="brand no-hover fg-white">
                 D.O.S
@@ -9,7 +9,7 @@
                 <li><a @click="logout" href="#">ログアウト</a></li>
             </ul>
         </div>
-        <div v-if="$route.path === '/login'">
+        <div v-if="$route.meta.allowGuest">
             <router-view></router-view>
         </div>
         <div v-else id="view" data-role="navview">

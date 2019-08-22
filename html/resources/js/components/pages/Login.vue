@@ -21,10 +21,13 @@
                            data-validate="required">
                 </label>
             </div>
-            <div class="form-group mt-10">
-                <button type="submit" class="button">ログイン</button>
+            <div class="form-group mt-10 clear">
+                <button type="submit" class="button place-right">ログイン</button>
             </div>
 
+            <div class="form-group" style="text-align: center">
+                <router-link to="/register">新規登録はこちら</router-link>
+            </div>
         </form>
     </div>
 </template>
@@ -33,7 +36,8 @@
     #login-form {
         width: 350px;
         height: auto;
-        top: calc(50% - 160px);
+        top: 50%;
+        transform: translateY(-50%);
     }
 </style>
 
@@ -43,6 +47,11 @@
             return {
                 email: '',
                 password: '',
+            }
+        },
+        created() {
+            if (this.$route.query.register === 'success') {
+                Metro.notify.create('ユーザー登録しました。', 'INFO', {cls: 'success'});
             }
         },
         methods: {
